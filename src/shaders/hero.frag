@@ -113,15 +113,18 @@ void main() {
   float field = fbm(vec3(p * 1.6 + warp * 0.9, t * 1.2));
   field = field * 0.5 + 0.5;
 
-  // Color grade: blend between two darks, then add volt glints in the
-  // high-energy ridges of the field.
-  vec3 col = mix(uColorInk, uColorDeep, smoothstep(0.2, 0.8, field));
-  float ridge = smoothstep(0.62, 0.95, field + ripple * 0.5);
-  col = mix(col, uColorVolt, ridge * 0.9);
+  // Color grade: mostly obsidian, with sparse electric-lime energy only
+  // in the brightest ridges of the field (kept dark + premium, legible).
+  vec3 col = mix(uColorInk, uColorDeep, smoothstep(0.15, 0.85, field));
+  float ridge = smoothstep(0.80, 1.02, field + ripple * 0.35);
+  col = mix(col, uColorVolt, ridge * 0.5);
 
-  // Subtle vignette to keep typography legible.
-  float vig = smoothstep(1.25, 0.25, length(uv - 0.5));
-  col *= 0.65 + 0.35 * vig;
+  // Soft lime glow that follows the cursor.
+  col += uColorVolt * ripple * 0.05;
+
+  // Strong vignette to keep typography legible over the field.
+  float vig = smoothstep(1.35, 0.35, length(uv - 0.5));
+  col *= 0.45 + 0.55 * vig;
 
   // Faint film grain to avoid banding on dark gradients.
   float grain = fract(sin(dot(uv * uResolution, vec2(12.9898, 78.233))) * 43758.5453);

@@ -78,15 +78,27 @@ function mix(a, b, t) {
   ];
 }
 
-// A dark gradient with a diagonal accent sweep, varying per seed.
+// A visible duotone-style gradient with a diagonal accent sweep + a soft
+// light spot, so the gallery reads as "photos" until real images replace it.
 function gradientFactory(seed) {
   const accent = seed % 2 === 0 ? VOLT : EMBER;
+  const dark = [22, 22, 28];
+  const light = [120, 122, 134];
   return (x, y, w, h) => {
-    const dy = y / h;
-    const diag = (x / w + y / h) / 2;
-    const base = mix(INK, mix(INK, [30, 30, 38], 1), dy * 0.6);
-    const sweep = Math.max(0, Math.sin((diag + seed * 0.13) * Math.PI * 1.5)) * 0.22;
-    return mix(base, accent, sweep);
+    const nx = x / w;
+    const ny = y / h;
+    const diag = (nx + ny) / 2;
+    // Vertical charcoal gradient (clearly visible tonal range).
+    let col = mix(light, dark, ny * 0.85 + 0.05);
+    // Diagonal accent band.
+    const sweep = Math.max(0, Math.sin((diag + seed * 0.17) * Math.PI * 1.6)) * 0.45;
+    col = mix(col, accent, sweep);
+    // Soft radial highlight (fake subject lighting).
+    const cx = 0.5 + (seed % 2 === 0 ? 0.12 : -0.12);
+    const d = Math.hypot(nx - cx, ny - 0.4);
+    const glow = Math.max(0, 1 - d * 1.8) * 0.25;
+    col = mix(col, [235, 232, 223], glow);
+    return col;
   };
 }
 

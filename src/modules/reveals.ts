@@ -37,7 +37,7 @@ export function initReveals(): void {
       duration: 1,
       ease: 'expo.out',
       stagger: 0.06,
-      scrollTrigger: { trigger: heading, start: 'top 85%' },
+      scrollTrigger: { trigger: heading, start: 'top 88%', once: true },
     });
   });
 
@@ -52,7 +52,7 @@ export function initReveals(): void {
         opacity: 1,
         duration: 1,
         ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 88%' },
+        scrollTrigger: { trigger: el, start: 'top 90%', once: true },
       },
     );
   });
@@ -65,7 +65,7 @@ export function initReveals(): void {
       v: end,
       duration: 1.6,
       ease: 'power2.out',
-      scrollTrigger: { trigger: el, start: 'top 90%' },
+      scrollTrigger: { trigger: el, start: 'top 92%', once: true },
       onUpdate: () => {
         el.textContent = String(Math.round(obj.v));
       },
@@ -95,5 +95,12 @@ export function heroIntro(): void {
 
   const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
   tl.to('.hero [data-split] span', { yPercent: 0, duration: 1.2, stagger: 0.12 })
-    .from(fades, { y: 30, opacity: 0, duration: 1, stagger: 0.12 }, '-=0.7');
+    // fromTo (not from): the CSS sets opacity:0, so we must declare the
+    // explicit end state of 1 or the elements would animate 0 -> 0.
+    .fromTo(
+      fades,
+      { y: 30, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1, stagger: 0.12 },
+      '-=0.7',
+    );
 }
