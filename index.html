@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="el">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0A0A0C" />
+
+    <title>elefit.gr — Ελευθερία Αναγνωστοπούλου | Personal Training & Online Coaching</title>
+    <meta
+      name="description"
+      content="Personal training, online coaching και προγράμματα ενδυνάμωσης από την Ελευθερία Αναγνωστοπούλου. Εξατομικευμένη προπόνηση, διατροφική καθοδήγηση και πραγματικά αποτελέσματα — δια ζώσης και online σε όλη την Ελλάδα."
+    />
+    <meta name="author" content="Ελευθερία Αναγνωστοπούλου" />
+    <link rel="canonical" href="https://elefit.gr/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="el_GR" />
+    <meta property="og:site_name" content="elefit.gr" />
+    <meta
+      property="og:title"
+      content="elefit.gr — Ελευθερία Αναγνωστοπούλου | Personal Training"
+    />
+    <meta
+      property="og:description"
+      content="Εξατομικευμένη προπόνηση, online coaching και διατροφική καθοδήγηση για πραγματικά, διατηρήσιμα αποτελέσματα."
+    />
+    <meta property="og:url" content="https://elefit.gr/" />
+    <meta property="og:image" content="https://elefit.gr/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="elefit.gr — Ελευθερία Αναγνωστοπούλου | Personal Training"
+    />
+    <meta
+      name="twitter:description"
+      content="Εξατομικευμένη προπόνηση, online coaching και διατροφική καθοδήγηση για πραγματικά αποτελέσματα."
+    />
+    <meta name="twitter:image" content="https://elefit.gr/og-image.png" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Fonts: Montserrat (display) + Inter (UI/body), variable, with Greek subset -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Montserrat:wght@500..900&display=swap"
+    />
+
+    <!-- JSON-LD: LocalBusiness + Person -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "HealthAndBeautyBusiness",
+            "@id": "https://elefit.gr/#business",
+            "name": "elefit.gr",
+            "description": "Personal training, online coaching και προγράμματα ενδυνάμωσης από την Ελευθερία Αναγνωστοπούλου.",
+            "url": "https://elefit.gr/",
+            "image": "https://elefit.gr/og-image.png",
+            "priceRange": "€€",
+            "areaServed": "GR",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "GR",
+              "addressLocality": "Αθήνα"
+            },
+            "founder": { "@id": "https://elefit.gr/#person" },
+            "sameAs": ["https://www.instagram.com/elefit.gr"]
+          },
+          {
+            "@type": "Person",
+            "@id": "https://elefit.gr/#person",
+            "name": "Ελευθερία Αναγνωστοπούλου",
+            "jobTitle": "Personal Trainer & Online Coach",
+            "url": "https://elefit.gr/",
+            "worksFor": { "@id": "https://elefit.gr/#business" }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Skip link for keyboard users -->
+    <a class="skip-link" href="#main">Μετάβαση στο περιεχόμενο</a>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+      <div class="preloader__inner">
+        <span class="preloader__mark">ELEFIT</span>
+        <div class="preloader__bar"><span class="preloader__fill" id="preloader-fill"></span></div>
+        <span class="preloader__count"><span id="preloader-count">0</span>%</span>
+      </div>
+    </div>
+
+    <!-- Custom cursor (decorative) -->
+    <div class="cursor" id="cursor" aria-hidden="true">
+      <div class="cursor__dot"></div>
+      <div class="cursor__ring"></div>
+      <span class="cursor__label" id="cursor-label"></span>
+    </div>
+
+    <!-- WebGL canvas (fixed, full-screen, behind content) -->
+    <canvas class="gl" id="gl-canvas" aria-hidden="true"></canvas>
+
+    <!-- WebGL-not-supported fallback -->
+    <noscript>
+      <div class="no-js">Για την πλήρη εμπειρία ενεργοποιήστε τη JavaScript.</div>
+    </noscript>
+
+    <!-- Header / Nav -->
+    <header class="header" id="header">
+      <a class="header__brand" href="#hero" data-cursor="Αρχή">elefit<span>.gr</span></a>
+      <nav class="header__nav" aria-label="Κύρια πλοήγηση">
+        <a href="#about" data-nav>Ποια είμαι</a>
+        <a href="#services" data-nav>Προγράμματα</a>
+        <a href="#method" data-nav>Μέθοδος</a>
+        <a href="#results" data-nav>Αποτελέσματα</a>
+        <a href="#contact" data-nav class="header__cta" data-cursor="Κλείσε ραντεβού">Κράτηση</a>
+      </nav>
+      <button class="header__burger" id="burger" aria-label="Άνοιγμα μενού" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </header>
+
+    <main id="main">
+      <!-- ============ HERO ============ -->
+      <section class="hero" id="hero" data-section>
+        <div class="hero__content">
+          <p class="hero__eyebrow" data-reveal>Personal Training & Online Coaching</p>
+          <h1 class="hero__title">
+            <span class="hero__line" data-split>Δύναμη που</span>
+            <span class="hero__line hero__line--accent" data-split>χτίζεται.</span>
+          </h1>
+          <p class="hero__sub" data-reveal>
+            Με την Ελευθερία Αναγνωστοπούλου. Εξατομικευμένη προπόνηση και διατροφή για το σώμα
+            και τη ζωή που αξίζεις — δια ζώσης ή online.
+          </p>
+          <div class="hero__actions" data-reveal>
+            <a href="#contact" class="btn btn--primary" data-cursor="Ξεκίνα">Ξεκίνα σήμερα</a>
+            <a href="#services" class="btn btn--ghost" data-cursor="Δες">Δες τα προγράμματα</a>
+          </div>
+        </div>
+        <div class="hero__scroll" aria-hidden="true">
+          <span>Κύλισε</span>
+          <span class="hero__scroll-line"></span>
+        </div>
+      </section>
+
+      <!-- ============ ABOUT / INTRO ============ -->
+      <section class="about" id="about" data-section>
+        <p class="section-index">01 — Ποια είμαι</p>
+        <div class="about__grid">
+          <h2 class="about__heading" data-split-lines>
+            Δεν προπονώ σώματα. Χτίζω συνήθειες που μένουν.
+          </h2>
+          <div class="about__body">
+            <p data-reveal>
+              Είμαι η Ελευθερία Αναγνωστοπούλου, certified personal trainer με πάνω από μια δεκαετία
+              εμπειρίας δίπλα σε ανθρώπους κάθε επιπέδου. Η φιλοσοφία μου είναι απλή: η προπόνηση
+              πρέπει να σε δυναμώνει — όχι να σε εξαντλεί ψυχολογικά.
+            </p>
+            <p data-reveal>
+              Σχεδιάζω προγράμματα γύρω από τη δική σου ζωή, το σώμα σου και τους στόχους σου. Χωρίς
+              μαγικές λύσεις, χωρίς υπερβολές. Μόνο επιστήμη, συνέπεια και μια σχέση εμπιστοσύνης που
+              σε κρατά σε κίνηση ακόμα και τις δύσκολες μέρες.
+            </p>
+            <ul class="about__stats">
+              <li data-reveal><strong data-count="10">0</strong><span>χρόνια εμπειρίας</span></li>
+              <li data-reveal><strong data-count="350">0</strong><span>άνθρωποι που προπόνησα</span></li>
+              <li data-reveal><strong data-count="98">0</strong><span>% παραμένουν ενεργοί</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SERVICES ============ -->
+      <section class="services" id="services" data-section>
+        <p class="section-index">02 — Προγράμματα</p>
+        <h2 class="services__title" data-split-lines>Διάλεξε τον δρόμο σου.</h2>
+        <ul class="services__list">
+          <li class="service" data-service data-cursor="Μάθε περισσότερα">
+            <span class="service__num">01</span>
+            <h3 class="service__name">Personal Training</h3>
+            <p class="service__desc">
+              Προπόνηση ένας-προς-έναν στο στούντιο. Πλήρως εξατομικευμένη, με διαρκή διόρθωση
+              τεχνικής και προσαρμογή σε κάθε σου πρόοδο.
+            </p>
+            <span class="service__tag">Δια ζώσης</span>
+          </li>
+          <li class="service" data-service data-cursor="Μάθε περισσότερα">
+            <span class="service__num">02</span>
+            <h3 class="service__name">Online Coaching</h3>
+            <p class="service__desc">
+              Το πρόγραμμά σου στο κινητό, όπου κι αν είσαι. Εβδομαδιαία check-ins, video ανάλυση
+              ασκήσεων και 24/7 υποστήριξη μέσω της εφαρμογής.
+            </p>
+            <span class="service__tag">Από παντού</span>
+          </li>
+          <li class="service" data-service data-cursor="Μάθε περισσότερα">
+            <span class="service__num">03</span>
+            <h3 class="service__name">Small Group</h3>
+            <p class="service__desc">
+              Η ενέργεια της ομάδας με την προσοχή του personal. Μικρά γκρουπ έως 4 ατόμων, για
+              κίνητρο, διασκέδαση και πραγματική πρόοδο.
+            </p>
+            <span class="service__tag">2–4 άτομα</span>
+          </li>
+          <li class="service" data-service data-cursor="Μάθε περισσότερα">
+            <span class="service__num">04</span>
+            <h3 class="service__name">Nutrition Guidance</h3>
+            <p class="service__desc">
+              Διατροφική καθοδήγηση χωρίς στερήσεις. Πλάνα που ταιριάζουν στην καθημερινότητά σου και
+              σε μαθαίνουν να τρέφεσαι σωστά για πάντα.
+            </p>
+            <span class="service__tag">Συνδυάζεται</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============ METHODOLOGY (horizontal pinned) ============ -->
+      <section class="method" id="method" data-section>
+        <div class="method__pin" id="method-pin">
+          <div class="method__head">
+            <p class="section-index">03 — Η μέθοδος</p>
+            <h2 class="method__title" data-split-lines>Πώς δουλεύουμε μαζί.</h2>
+          </div>
+          <div class="method__track" id="method-track">
+            <article class="step">
+              <span class="step__num">01</span>
+              <h3 class="step__name">Αξιολόγηση</h3>
+              <p>
+                Ξεκινάμε με μια ολοκληρωμένη αξιολόγηση: ιστορικό, κινητικότητα, στόχοι και
+                καθημερινότητα. Καταλαβαίνω πού βρίσκεσαι πριν πούμε πού πάμε.
+              </p>
+            </article>
+            <article class="step">
+              <span class="step__num">02</span>
+              <h3 class="step__name">Σχεδιασμός</h3>
+              <p>
+                Χτίζω ένα πρόγραμμα φτιαγμένο αποκλειστικά για σένα — προπόνηση και διατροφή που
+                ταιριάζουν στον χρόνο, τον εξοπλισμό και το επίπεδό σου.
+              </p>
+            </article>
+            <article class="step">
+              <span class="step__num">03</span>
+              <h3 class="step__name">Προπόνηση</h3>
+              <p>
+                Μπαίνουμε στη δράση. Με σωστή τεχνική, σταδιακή επιβάρυνση και συνεχή υποστήριξη,
+                κάθε εβδομάδα γίνεσαι πιο δυνατός — σωματικά και ψυχικά.
+              </p>
+            </article>
+            <article class="step">
+              <span class="step__num">04</span>
+              <h3 class="step__name">Αποτελέσματα</h3>
+              <p>
+                Παρακολουθούμε την πρόοδο με μετρήσιμα δεδομένα και προσαρμόζουμε. Οι αλλαγές γίνονται
+                συνήθειες — και οι συνήθειες γίνονται ο νέος σου εαυτός.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ RESULTS / TRANSFORMATIONS ============ -->
+      <section class="results" id="results" data-section>
+        <p class="section-index">04 — Αποτελέσματα</p>
+        <h2 class="results__title" data-split-lines>Πραγματικοί άνθρωποι. Πραγματική πρόοδος.</h2>
+        <div class="results__gallery" id="results-gallery">
+          <figure class="result" data-gl-image="/assets/images/transformation-1.png" data-cursor="Δες">
+            <img src="/assets/images/transformation-1.png" alt="Μεταμόρφωση πελάτισσας μετά από πρόγραμμα ενδυνάμωσης" loading="lazy" width="900" height="1200" />
+            <figcaption><strong>Μαρία, 34</strong><span>−12 κιλά σε 6 μήνες</span></figcaption>
+          </figure>
+          <figure class="result" data-gl-image="/assets/images/transformation-2.png" data-cursor="Δες">
+            <img src="/assets/images/transformation-2.png" alt="Πελάτης κατά τη διάρκεια προπόνησης ενδυνάμωσης" loading="lazy" width="900" height="1200" />
+            <figcaption><strong>Γιώργος, 41</strong><span>+8 κιλά καθαρή μάζα</span></figcaption>
+          </figure>
+          <figure class="result" data-gl-image="/assets/images/transformation-3.png" data-cursor="Δες">
+            <img src="/assets/images/transformation-3.png" alt="Πελάτισσα σε στιγμιότυπο προπόνησης στο στούντιο" loading="lazy" width="900" height="1200" />
+            <figcaption><strong>Ελένη, 28</strong><span>Επιστροφή μετά από τραυματισμό</span></figcaption>
+          </figure>
+          <figure class="result" data-gl-image="/assets/images/transformation-4.png" data-cursor="Δες">
+            <img src="/assets/images/transformation-4.png" alt="Πελάτης που εκτελεί άρση βαρών με σωστή τεχνική" loading="lazy" width="900" height="1200" />
+            <figcaption><strong>Δημήτρης, 37</strong><span>Διπλάσια δύναμη σε 1 χρόνο</span></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ============ TESTIMONIALS (marquee) ============ -->
+      <section class="testimonials" id="testimonials" data-section>
+        <p class="section-index">05 — Μαρτυρίες</p>
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee__track" id="marquee-track">
+            <span>Άλλαξε τη σχέση μου με το σώμα μου ✦</span>
+            <span>Ποτέ δεν ένιωσα τόσο δυνατή ✦</span>
+            <span>Η συνέπεια έγινε εύκολη ✦</span>
+            <span>Επιτέλους ένα πλάνο που κράτησα ✦</span>
+            <span>Άλλαξε τη σχέση μου με το σώμα μου ✦</span>
+            <span>Ποτέ δεν ένιωσα τόσο δυνατή ✦</span>
+            <span>Η συνέπεια έγινε εύκολη ✦</span>
+            <span>Επιτέλους ένα πλάνο που κράτησα ✦</span>
+          </div>
+        </div>
+        <ul class="testimonials__list">
+          <li class="quote" data-reveal>
+            <blockquote>
+              «Η Ελευθερία δεν με έβαλε απλώς να γυμναστώ — μου άλλαξε ολόκληρη τη νοοτροπία. Για
+              πρώτη φορά η προπόνηση είναι κομμάτι της ζωής μου, όχι αγγαρεία.»
+            </blockquote>
+            <cite>— Κατερίνα Π., online coaching</cite>
+          </li>
+          <li class="quote" data-reveal>
+            <blockquote>
+              «Δοκίμασα τα πάντα πριν. Εδώ είδα αποτελέσματα γιατί κάποιος πραγματικά νοιάστηκε για
+              τη δική μου πορεία και προσάρμοζε το πρόγραμμα σε κάθε βήμα.»
+            </blockquote>
+            <cite>— Νίκος Α., personal training</cite>
+          </li>
+          <li class="quote" data-reveal>
+            <blockquote>
+              «Επαγγελματισμός, ενέργεια και ανθρωπιά. Μετά από έναν τραυματισμό, με βοήθησε να
+              ξαναβρώ την εμπιστοσύνη στο σώμα μου σιγά σιγά και με ασφάλεια.»
+            </blockquote>
+            <cite>— Σοφία Μ., small group</cite>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============ CONTACT / BOOKING ============ -->
+      <section class="contact" id="contact" data-section>
+        <p class="section-index">06 — Επικοινωνία</p>
+        <div class="contact__grid">
+          <div class="contact__intro">
+            <h2 class="contact__title" data-split-lines>Ας ξεκινήσουμε.</h2>
+            <p data-reveal>
+              Κλείσε μια δωρεάν γνωριμία 20 λεπτών. Θα μιλήσουμε για τους στόχους σου και θα δούμε
+              μαζί ποιο πρόγραμμα σου ταιριάζει — χωρίς καμία δέσμευση.
+            </p>
+            <ul class="contact__links">
+              <li><a href="mailto:hello@elefit.gr" data-cursor="Στείλε email">hello@elefit.gr</a></li>
+              <li><a href="https://www.instagram.com/elefit.gr" target="_blank" rel="noopener" data-cursor="Ακολούθησε">Instagram @elefit.gr</a></li>
+              <li><a href="tel:+302100000000" data-cursor="Κάλεσε">+30 210 000 0000</a></li>
+            </ul>
+          </div>
+
+          <!-- Web3Forms: αντικατέστησε το access key (δες README) -->
+          <form class="contact__form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+            <input type="hidden" name="subject" value="Νέα κράτηση από το elefit.gr" />
+            <input type="hidden" name="from_name" value="elefit.gr" />
+            <!-- Honeypot anti-spam -->
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none" tabindex="-1" autocomplete="off" />
+
+            <div class="field">
+              <label for="name">Όνομα</label>
+              <input id="name" name="name" type="text" required autocomplete="name" placeholder="Το όνομά σου" />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" required autocomplete="email" placeholder="email@example.com" />
+            </div>
+            <div class="field">
+              <label for="goal">Στόχος</label>
+              <select id="goal" name="goal">
+                <option value="Ενδυνάμωση">Ενδυνάμωση</option>
+                <option value="Απώλεια βάρους">Απώλεια βάρους</option>
+                <option value="Online coaching">Online coaching</option>
+                <option value="Αποκατάσταση">Αποκατάσταση</option>
+                <option value="Άλλο">Άλλο</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="message">Μήνυμα</label>
+              <textarea id="message" name="message" rows="4" placeholder="Πες μου λίγα λόγια για σένα και τους στόχους σου..."></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary" data-cursor="Αποστολή">Στείλε το μήνυμα</button>
+            <p class="contact__status" id="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+      <div class="footer__big" aria-hidden="true">elefit</div>
+      <div class="footer__cols">
+        <nav class="footer__nav" aria-label="Πλοήγηση υποσέλιδου">
+          <a href="#about">Ποια είμαι</a>
+          <a href="#services">Προγράμματα</a>
+          <a href="#method">Μέθοδος</a>
+          <a href="#results">Αποτελέσματα</a>
+          <a href="#contact">Επικοινωνία</a>
+        </nav>
+        <div class="footer__contact">
+          <a href="mailto:hello@elefit.gr">hello@elefit.gr</a>
+          <a href="https://www.instagram.com/elefit.gr" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <div class="footer__base">
+        <span>© <span id="year">2026</span> elefit.gr — Ελευθερία Αναγνωστοπούλου</span>
+        <span>Σχεδιασμός &amp; ανάπτυξη με ❤︎ στην Ελλάδα</span>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

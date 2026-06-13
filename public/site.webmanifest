@@ -1,0 +1,14 @@
+{
+  "name": "elefit.gr — Ελευθερία Αναγνωστοπούλου",
+  "short_name": "elefit",
+  "description": "Personal training & online coaching",
+  "lang": "el",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0C",
+  "theme_color": "#0A0A0C",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

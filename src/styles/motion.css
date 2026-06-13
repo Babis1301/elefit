@@ -1,0 +1,70 @@
+/* ============================================================
+   Reveal/animation helper states + reduced motion
+   ============================================================ */
+
+/* Initial state for JS-driven reveals (set before GSAP takes over). */
+[data-reveal],
+[data-split-lines] .line-inner,
+[data-split] {
+  will-change: transform, opacity;
+}
+
+/* Word-mask wrappers produced by JS (data-split-lines) */
+.word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+.word-inner {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* When JS is unavailable or hasn't booted, content must still be visible:
+   GSAP sets the hidden state at runtime via .js-ready guard. */
+.js-ready [data-reveal] {
+  opacity: 0;
+}
+
+/* ============================================================
+   prefers-reduced-motion — disable heavy motion, keep usable
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  body {
+    cursor: auto;
+  }
+  .cursor {
+    display: none;
+  }
+  .hero__scroll-line {
+    animation: none;
+  }
+
+  /* Ensure nothing stays hidden if reveals are skipped */
+  .js-ready [data-reveal],
+  [data-reveal],
+  [data-split],
+  [data-split-lines] .line-inner {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Touch devices: native cursor, no custom pointer */
+@media (hover: none) {
+  body {
+    cursor: auto;
+  }
+  .cursor {
+    display: none;
+  }
+}

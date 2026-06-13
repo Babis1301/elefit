@@ -1,0 +1,47 @@
+/* ============================================================
+   Design tokens — colors, type, spacing, motion
+   ============================================================ */
+:root {
+  /* --- Color palette (dark by default) --- */
+  --ink: #0a0a0c; /* obsidian base */
+  --ink-2: #121216; /* raised surface */
+  --ink-3: #1b1b21; /* card / border base */
+  --bone: #ece8df; /* warm off-white text */
+  --bone-dim: #b6b2a9;
+  --mist: #6f6f78; /* muted secondary */
+  --volt: #d7ff3e; /* electric lime — primary accent */
+  --ember: #ff5a2c; /* warm coral — secondary accent */
+
+  --line: rgba(236, 232, 223, 0.12);
+  --line-strong: rgba(236, 232, 223, 0.28);
+
+  /* --- Typography --- */
+  --font-display: 'Montserrat', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  /* Fluid type scale (clamp: min, fluid, max) */
+  --fs-eyebrow: clamp(0.72rem, 0.68rem + 0.2vw, 0.85rem);
+  --fs-body: clamp(1rem, 0.95rem + 0.3vw, 1.18rem);
+  --fs-lead: clamp(1.15rem, 1rem + 0.8vw, 1.6rem);
+  --fs-h3: clamp(1.4rem, 1.1rem + 1.4vw, 2.2rem);
+  --fs-h2: clamp(2.2rem, 1.4rem + 4vw, 5rem);
+  --fs-display: clamp(3rem, 1rem + 11vw, 11rem);
+
+  /* --- Spacing / layout --- */
+  --gutter: clamp(1.25rem, 4vw, 5rem);
+  --section-y: clamp(5rem, 10vw, 11rem);
+  --maxw: 88rem;
+  --radius: 14px;
+
+  /* --- Motion --- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
+
+  --header-h: 5.5rem;
+}
+
+::selection {
+  background: var(--volt);
+  color: var(--ink);
+}

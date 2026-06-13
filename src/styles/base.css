@@ -1,0 +1,190 @@
+/* ============================================================
+   Base / reset / typography
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: auto; /* Lenis owns scrolling */
+}
+
+/* Lenis: required for smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background: var(--ink);
+  color: var(--bone);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  cursor: none; /* replaced by custom cursor; restored on touch/reduced-motion */
+}
+
+img,
+picture,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+strong {
+  font-weight: 600;
+}
+
+:focus-visible {
+  outline: 2px solid var(--volt);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 999;
+  padding: 0.6rem 1rem;
+  background: var(--volt);
+  color: var(--ink);
+  border-radius: 8px;
+  font-weight: 600;
+  transform: translateY(-150%);
+  transition: transform 0.25s var(--ease-out);
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.no-js {
+  position: fixed;
+  inset: auto 0 0 0;
+  padding: 1rem;
+  text-align: center;
+  background: var(--ember);
+  color: var(--ink);
+  z-index: 200;
+}
+
+/* Fixed WebGL canvas behind everything */
+.gl {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Generic section rhythm */
+[data-section] {
+  position: relative;
+  padding: var(--section-y) var(--gutter);
+  max-width: var(--maxw);
+  margin-inline: auto;
+}
+
+.section-index {
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--volt);
+  margin-bottom: 2.5rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.8rem;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  border: 1px solid transparent;
+  transition:
+    transform 0.4s var(--ease-out),
+    background-color 0.4s var(--ease-out),
+    color 0.4s var(--ease-out),
+    border-color 0.4s var(--ease-out);
+  will-change: transform;
+}
+.btn--primary {
+  background: var(--volt);
+  color: var(--ink);
+}
+.btn--primary:hover {
+  transform: translateY(-3px);
+  background: #e7ff6e;
+}
+.btn--ghost {
+  border-color: var(--line-strong);
+  color: var(--bone);
+}
+.btn--ghost:hover {
+  border-color: var(--volt);
+  color: var(--volt);
+  transform: translateY(-3px);
+}
+
+.hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
