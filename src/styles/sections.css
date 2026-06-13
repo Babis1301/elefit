@@ -128,14 +128,12 @@
 .service {
   position: relative;
   display: grid;
-  grid-template-columns: 4rem 1fr 11rem;
-  grid-template-areas:
-    'num name tag'
-    'num desc tag';
+  grid-template-columns: 3.5rem minmax(12rem, 1fr) minmax(14rem, 1.2fr) auto;
+  grid-template-areas: 'num name desc tag';
   align-items: center;
-  column-gap: clamp(1rem, 2vw, 2rem);
-  row-gap: 0.7rem;
-  padding: clamp(1.6rem, 4vw, 2.6rem) 0;
+  column-gap: clamp(1.5rem, 3vw, 3.5rem);
+  row-gap: 0.8rem;
+  padding: clamp(1.8rem, 3.5vw, 2.6rem) clamp(1.3rem, 2.5vw, 2.6rem);
   border-bottom: 1px solid var(--line);
   transition: padding-left 0.5s var(--ease-out);
 }
@@ -150,7 +148,7 @@
   z-index: -1;
 }
 .service:hover {
-  padding-left: 1.5rem;
+  padding-left: clamp(2rem, 3.5vw, 3.4rem);
 }
 .service:hover::before {
   transform: scaleY(1);
@@ -167,8 +165,7 @@
 }
 .service__num {
   grid-area: num;
-  align-self: start;
-  padding-top: 0.5rem;
+  align-self: center;
   font-family: var(--font-display);
   font-weight: 600;
   color: var(--mist);
@@ -176,13 +173,14 @@
 }
 .service__name {
   grid-area: name;
-  font-size: var(--fs-h3);
+  font-size: clamp(1.3rem, 1.1rem + 1vw, 1.9rem);
 }
 .service__desc {
   grid-area: desc;
   color: var(--bone-dim);
-  font-size: 0.98rem;
-  max-width: 52ch;
+  font-size: 0.96rem;
+  line-height: 1.5;
+  max-width: 44ch;
 }
 .service__tag {
   grid-area: tag;
@@ -505,11 +503,19 @@
   .testimonials__list {
     grid-template-columns: 1fr;
   }
+}
+
+/* Services stack earlier (tablet) so the row never cramps. */
+@media (max-width: 1024px) {
   .service {
-    grid-template-columns: 2.5rem 1fr;
+    grid-template-columns: 2.8rem 1fr;
     grid-template-areas:
       'num name'
       'num desc';
+    column-gap: 1.5rem;
+  }
+  .service__desc {
+    max-width: none;
   }
   .service__tag {
     display: none;
